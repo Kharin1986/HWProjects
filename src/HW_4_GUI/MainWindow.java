@@ -1,9 +1,7 @@
 package HW_4_GUI;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 import java.io.IOException;
 
 public class MainWindow extends JFrame implements MessageSender {
@@ -36,6 +34,30 @@ public class MainWindow extends JFrame implements MessageSender {
         add(scrollPane, BorderLayout.CENTER);
 
         textField = new JTextField();
+        // ENTER - обработка
+        textField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    submitMessage("user", textField.getText());
+                    String text = textField.getText();
+                    textField.setText(null);
+                    textField.requestFocus();
+                    network.sendMessage(text);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         button = new JButton("Send");
         button.addActionListener(new AbstractAction() {
             @Override
