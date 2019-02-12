@@ -1,5 +1,5 @@
 package HW_4_GUI;
-
+import java.time.LocalDate;
 
 public class Message {
 
@@ -7,9 +7,12 @@ public class Message {
 
     private String message;
 
+    private LocalDate date;
+
     public Message(String userName, String message) {
         this.userName = userName;
         this.message = message;
+        this.date = LocalDate.now();
     }
 
     public String getUserName() {
@@ -18,5 +21,9 @@ public class Message {
 
     public String getMessage() {
         return message;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 }
